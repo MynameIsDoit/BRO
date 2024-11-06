@@ -397,8 +397,8 @@ sections.MainSection3:Toggle({
     end
 }, "ButtonInMiddleToggle")
 
-spawn(function()
-    while task.wait(0.1) do
+task.spawn(function()
+    while task.wait() do
         if _G.config.freezeCharacter and savedCFrame then 
             local character = player.Character
             if character and character.PrimaryPart then
