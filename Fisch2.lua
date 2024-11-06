@@ -241,7 +241,6 @@ do
             setupvalue(update_colors, 1, 100)
             replicated_storage.events.reelfinished:FireServer(getupvalue(update_colors, 1), true)
             replicated_storage.events.reelfinished:FireServer(getupvalue(update_colors, 1), true)
-            replicated_storage.events.reelfinished:FireServer(getupvalue(update_colors, 1), true)
         end
     end
 end
