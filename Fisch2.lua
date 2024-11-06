@@ -479,6 +479,7 @@ spawn(function()
             farm.cast()
             farm.shake()
             farm.reel()
+            farm.reel()
         end
     end
 end)
