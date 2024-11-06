@@ -126,7 +126,7 @@ _G.config = {
     disableChat = true,
     enableBigButton = false,
     bigButtonScaleFactor = 0.3,
-    shakeSpeed = 0.035,
+    shakeSpeed = 0.025,
     enableAutoCast = false,
     enableAutoShake = false,
     freezeCharacter = false,
@@ -239,6 +239,8 @@ do
 
         if update_colors then
             setupvalue(update_colors, 1, 100)
+            replicated_storage.events.reelfinished:FireServer(getupvalue(update_colors, 1), true)
+            replicated_storage.events.reelfinished:FireServer(getupvalue(update_colors, 1), true)
             replicated_storage.events.reelfinished:FireServer(getupvalue(update_colors, 1), true)
             replicated_storage.events.reelfinished:FireServer(getupvalue(update_colors, 1), true)
         end
