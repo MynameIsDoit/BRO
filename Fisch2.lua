@@ -126,7 +126,7 @@ _G.config = {
     disableChat = true,
     enableBigButton = false,
     bigButtonScaleFactor = 0.3,
-    shakeSpeed = 0.025,
+    shakeSpeed = 0.05,
     enableAutoCast = false,
     enableAutoShake = false,
     freezeCharacter = false,
@@ -242,8 +242,6 @@ do
             replicated_storage.events.reelfinished:FireServer(getupvalue(update_colors, 1), true)
             replicated_storage.events.reelfinished:FireServer(getupvalue(update_colors, 1), true)
             replicated_storage.events.reelfinished:FireServer(getupvalue(update_colors, 1), true)
-            replicated_storage.events.reelfinished:FireServer(getupvalue(update_colors, 1), true)
-            replicated_storage.events.reelfinished:FireServer(getupvalue(update_colors, 1), true)
         end
     end
 end
@@ -318,7 +316,7 @@ task.spawn(function()
                 character:SetPrimaryPartCFrame(savedCFrame)
             end
         end
-        task.wait(0.1)
+        task.wait(0.75)
     end
 end)
 
