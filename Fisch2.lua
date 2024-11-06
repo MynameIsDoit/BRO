@@ -241,6 +241,8 @@ do
             setupvalue(update_colors, 1, 100)
             replicated_storage.events.reelfinished:FireServer(getupvalue(update_colors, 1), true)
             replicated_storage.events.reelfinished:FireServer(getupvalue(update_colors, 1), true)
+            replicated_storage.events.reelfinished:FireServer(getupvalue(update_colors, 1), true)
+            replicated_storage.events.reelfinished:FireServer(getupvalue(update_colors, 1), true)
         end
     end
 end
@@ -298,26 +300,27 @@ sections.MainSection2:Toggle({
     Default = false,
     Callback = function(value)
         _G.config.freezeCharacter = value
-        local character = player.Character
-        if character then
-            local humanoid = character:FindFirstChildOfClass("Humanoid")
-            if value and savedCFrame then
-                if character.PrimaryPart then
-                    character:SetPrimaryPartCFrame(savedCFrame)
-                end
-                if humanoid then
-                    humanoid.WalkSpeed = 0
-                    humanoid.JumpPower = 0
-                end
-            elseif not value then
-                if humanoid then
-                    humanoid.WalkSpeed = 16 
-                    humanoid.JumpPower = 50  
-                end
+        if value then
+            local character = player.Character
+            if character and character:FindFirstChild("HumanoidRootPart") then
+                _G.config.loopPosition = character.HumanoidRootPart.Position
             end
         end
     end
 }, "FreezeCharacterToggle")
+
+task.spawn(function()
+    while true do
+        if _G.config.freezeCharacter and savedCFrame then
+            local character = player.Character
+            if character and character:FindFirstChild("HumanoidRootPart") then
+                character:SetPrimaryPartCFrame(savedCFrame)
+            end
+        end
+        task.wait(0.75)
+    end
+end)
+
 
 sections.MainSection2:Button({
     Name = "FPS Boost",
@@ -394,22 +397,6 @@ sections.MainSection3:Toggle({
         end
     end
 }, "ButtonInMiddleToggle")
-
-task.spawn(function()
-    while task.wait() do
-        if _G.config.freezeCharacter and savedCFrame then 
-            local character = player.Character
-            if character and character.PrimaryPart then
-                character:SetPrimaryPartCFrame(savedCFrame)
-                local humanoid = character:FindFirstChildOfClass("Humanoid")
-                if humanoid then
-                    humanoid.WalkSpeed = 0
-                    humanoid.JumpPower = 0
-                end
-            end
-        end 
-    end
-end)
 
 spawn(function()
     while task.wait(0.1) do
@@ -492,8 +479,6 @@ spawn(function()
         if rod then
             farm.cast()
             farm.shake()
-            farm.shake()
-            farm.reel()
             farm.reel()
         end
     end
