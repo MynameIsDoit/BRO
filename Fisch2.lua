@@ -315,7 +315,7 @@ task.spawn(function()
                 character:SetPrimaryPartCFrame(savedCFrame)
             end
         end
-        task.wait(0.5)
+        task.wait(0.1)
     end
 end)
 
