@@ -239,7 +239,7 @@ do
 
 	   if update_colors then
             setupvalue(update_colors, 1, 100)
-            for i = 1, 6 do
+            for i = 1, 13 do
                 replicated_storage.events.reelfinished:FireServer(getupvalue(update_colors, 1), true)
             end
         end
@@ -397,7 +397,7 @@ sections.MainSection3:Toggle({
 }, "ButtonInMiddleToggle")
 
 spawn(function()
-    while task.wait(0.1) do
+    while task.wait() do
         if _G.config.buttonInMiddle then
             local shake_ui = playergui:FindFirstChild("shakeui")
             if shake_ui then
