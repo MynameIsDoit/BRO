@@ -472,7 +472,7 @@ sections.MainSection4:Label({
 
 
 coroutine.wrap(function()
-    while task.wait(math.max(_G.config.shakeSpeed)) do  -- Set a minimum wait time to avoid excessive function calls
+    while task.wait(math.max(_G.config.shakeSpeed, 0.1)) do  -- Set a minimum wait time to avoid excessive function calls
         local character = player.Character
         if character then
             local rod = character:FindFirstChildOfClass("Tool")
