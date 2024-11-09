@@ -237,13 +237,13 @@ do
 
         local update_colors = getsenv(reel_client).UpdateColors
 
-        if update_colors then
+	   if update_colors then
             setupvalue(update_colors, 1, 100)
-            replicated_storage.events.reelfinished:FireServer(getupvalue(update_colors, 1), true)
-            replicated_storage.events.reelfinished:FireServer(getupvalue(update_colors, 1), true)
+            for i = 1, 6 do
+                replicated_storage.events.reelfinished:FireServer(getupvalue(update_colors, 1), true)
+            end
         end
     end
-end
 
 -- Create UI toggles for fishing features
 sections.MainSection1:Toggle({
