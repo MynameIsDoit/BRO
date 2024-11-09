@@ -125,8 +125,8 @@ _G.config = {
     fpsCap = 999,
     disableChat = true,
     enableBigButton = false,
-    bigButtonScaleFactor = 0.3,
-    shakeSpeed = 0.05,
+    bigButtonScaleFactor = 0.15,
+    shakeSpeed = 0.01,
     enableAutoCast = false,
     enableAutoShake = false,
     freezeCharacter = false,
@@ -159,7 +159,7 @@ do
 end
 
 local farm = {reel_tick = nil, cast_tick = nil}
-do
+
     function farm.find_rod()
         local character = localplayer.Character
         if not character then return nil end
@@ -471,17 +471,25 @@ sections.MainSection4:Label({
 })
 
 
-spawn(function()
-    while task.wait(_G.config.shakeSpeed) do
-        local rod = farm.find_rod()
-        if rod then
-            farm.cast()
-            farm.shake()
-            farm.reel()
-            farm.reel()
+coroutine.wrap(function()
+    while task.wait(math.max(_G.config.shakeSpeed)) do  -- Set a minimum wait time to avoid excessive function calls
+        local character = player.Character
+        if character then
+            local rod = character:FindFirstChildOfClass("Tool")
+            if rod then
+                if _G.config.enableAutoCast then
+                    farm.cast()  -- Call cast only if enabled
+                end
+                if _G.config.enableAutoShake then
+                    farm.shake()  -- Call shake only if enabled
+                end
+                if _G.config.enableAutoReel then
+                    farm.reel()  -- Call reel only if enabled
+                end
+            end
         end
     end
-end)
+end)()
 
 MacLib:SetFolder("Maclib")
 tabs.Settings:InsertConfigSection("Left")
